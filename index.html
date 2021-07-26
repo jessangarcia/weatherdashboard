@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Weather Dashboard</title>
+</head>
+
+<body>
+    <header class="hero">
+        <h1 class="bg-primary text-center p-2 text-white">Weather Dashboard</h1>
+    </header>
+
+    <main class="container-fluid">
+        <div class="row">
+            <!--search form-->
+            <div class="col-12 col-md-3 p-2 search-column">
+                <form class="p-2" id="search-city">
+                    <h3>Search For A City:</h3>
+                    <input type="text" autofocus="true" id="city-name" class="form-input">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </form>
+                <div class="past-search border" id="past-search"></div>
+            </div>
+
+            <!--city searched for-->
+            <div class="col-12 col-md-9">
+                <div class="row border city" id="current-weather">
+                    <div class="col-12">
+                        <h2 id="subtitle"><span id="weather-for"></span></h2>
+                        <div id="current-city-container" class="list-group"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!--5 day forecast-->
+            <div class="row border" id="five-day">
+                <span class="col-12" id="forecast"></span>
+                <div class="d-flex" id="five-container"></div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+    <script src="./assets/js/script.js"></script>
+</body>
+
+</html>
