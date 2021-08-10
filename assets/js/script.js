@@ -41,17 +41,21 @@ var getWeather = function(city) {
 var displayWeather = function(weather, searched){
     //clear out old input
     weatherContainer.textContent = "";
-    inputEl.textContent = searched;
+    titleCityName.textContent = searched;
 
     //display city name and current date
     var date = document.createElement("span");
     //https://momentjs.com/docs/
     date.textContent = " (" + moment(weather.dt.value).format("MMM D, YYYY") + ") ";
-    inputEl.appendChild(date);
+    titleCityName.appendChild(date);
 
-    console.log(date);
+    //console.log(date);
+
+    //display icon from api/create an image
+    var icon = document.createElement("img");
+    icon.setAttribute("src", "https://openweathermap.org/img/wn/" + weather.weather[0].icon + ".png");
+    titleCityName.appendChild(icon);
 }
-
 
 searchForm.addEventListener("submit", formSubmit);
 
