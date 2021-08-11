@@ -8,7 +8,7 @@ var titleCityName = document.querySelector("#subtitle");
 var forecastTitle = document.querySelector("#forecast");
 var foreContainer = document.querySelector("#five-container");
 
-var getWeather = function(city) {
+function getWeather(city) {
     var api = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=afae4319fa1019c142d85c5c40401962"
     
     fetch(api).then(function(response){
@@ -18,7 +18,7 @@ var getWeather = function(city) {
     });
 };
 
-var formSubmit = function(event) {
+function formSubmit(event) {
     event.preventDefault();
     var city = inputEl.value.trim();
 
@@ -35,12 +35,12 @@ var formSubmit = function(event) {
     saveSearch();
 }
 
-var saveSearch = function(){
+function saveSearch(){
     localStorage.setItem("cities", JSON.stringify(cities));
 }
 
 
-var displayWeather = function(weather, searched){
+function displayWeather(weather, searched){
     //clear out old input
     weatherContainer.textContent = "";
     titleCityName.textContent = searched;
@@ -76,6 +76,47 @@ var displayWeather = function(weather, searched){
     weatherContainer.appendChild(wind)
     weatherContainer.appendChild(humid)
 
+    var lon = weather.coord.lon;
+    var lat = weather.coord.lat;
+    getUV(lat, lon);
+
+}
+
+function getUV(lat, lon) {
+    var uvApi = "https://api.openweathermap.org/data/2.5/onecall?lat="+ lat + "&lon="+ lon + "&appid=afae4319fa1019c142d85c5c40401962"
+
+    fetch(uvApi).then(function(response){
+        response.json().then(function(data){
+            uvIndex(data)
+            console.log(data)
+        });
+    });
+};
+
+function uvIndex(data) {
+    //create element for uv index api
+    var index = data.current.uvi;
+    //index container
+    var uvContainer = document.createElement("div");
+    uvContainer.classList = "weather-list";
+    uvContainer.textContent = "UV Index: ";
+    //index element
+    var uv = document.createElement("span");
+    uv.textContent = index;
+
+    if (index <= 2) {
+        uv.classList = "favorable"
+    } else if(index > 2 && index <= 8){
+        uv.classList = "moderate"
+    } else if(index > 8) {
+        uv.classList = "severe"
+    };
+
+    console.log(uv);
+
+    uvContainer.appendChild(uv);
+
+    weatherContainer.appendChild(uvContainer);
 
 
 }

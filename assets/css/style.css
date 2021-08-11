@@ -18,10 +18,31 @@ body {
     background-color: lightgray;
 }
 
-/* .list-item {}
+.city {
+    padding: 10px;
+}
 
-.span.severe {}
+weather-list {
+    padding: 5px;
+}
 
-.span.moderate {}
+span.severe {
+    padding: 4px;
+    background-color: red;
+    color: white;
+    border-radius: 10%;
+}
 
-.span.favorable {} */
+span.moderate {
+    padding: 4px;
+    background-color: yellow;
+    color: white;
+    border-radius: 10%;
+}
+
+span.favorable {
+    padding: 4px;
+    background-color: green;
+    color: white;
+    border-radius: 10%;
+}
