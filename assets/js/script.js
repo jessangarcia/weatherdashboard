@@ -7,6 +7,7 @@ var weatherContainer = document.querySelector("#current-city-container");
 var titleCityName = document.querySelector("#subtitle");
 var forecastTitle = document.querySelector("#forecast");
 var foreContainer = document.querySelector("#five-container");
+var pastButton = document.querySelector("#past-button")
 
 function getWeather(city) {
     var api = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=afae4319fa1019c142d85c5c40401962"
@@ -34,6 +35,7 @@ function formSubmit(event) {
     }
 
     saveSearch();
+    past();
 }
 
 function saveSearch() {
@@ -172,9 +174,33 @@ function fiveDay(weather) {
 
         foreContainer.appendChild(castContain);
     }
-
 }
 
+function past(past) {
+    //https://stackoverflow.com/questions/42701969/get-data-from-local-storage-and-append-to-html-as-li
+    var oldCity = JSON.parse(window.localStorage.getItem("cities"));
+    oldCity.forEach(function(value){
+        var button = document.createElement("button")
+        //grabs city name from local storage, and appends it to the button element
+        button.append(value.city)
+        button.classList = "btn btn-primary p-2 w-100"
+        button.setAttribute("data-city", value.city)
+        button.setAttribute("type", "submit")
+
+        //appends button to the button container
+        pastButton.appendChild(button)
+
+    })
+}
+
+function pastHandler(event) {
+    var city = event.target.getAttribute("data-city")
+    if(city){
+        getWeather(city);
+        fetchForecast(city);
+    }
+} 
 
 searchForm.addEventListener("submit", formSubmit);
+pastButton.addEventListener("click", pastHandler);
 
