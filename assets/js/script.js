@@ -141,7 +141,7 @@ function fiveDay(weather) {
 
         var castDate = document.createElement("h3");
         //https://momentjs.com/docs/
-        castDate.textContent = moment(daily.dt).format("MMM D, YYYY");
+        castDate.textContent = moment.unix(daily.dt).format("MMM D, YYYY");
         castDate.classList = "card-header text-center";
         castContain.appendChild(castDate);
 
