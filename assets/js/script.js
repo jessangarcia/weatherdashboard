@@ -1,5 +1,4 @@
 //api key: afae4319fa1019c142d85c5c40401962
-//referenced https://github.com/mlportu/weather-dashboard/blob/master/assets/js/script.js
 var cities = [];
 var searchForm = document.querySelector("#search-city");
 var inputEl = document.querySelector("#city-name");
